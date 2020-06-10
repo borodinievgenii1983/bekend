@@ -17,7 +17,7 @@ import java.util.List;
 @Transactional
 public class CategoryService {
 
-    private final CategoryRepository repository; // сервис имеет право обращаьтся к репозиторию (БД)
+    private final CategoryRepository repository; // сервис имеет право обращатmся к репозиторию (БД)
 
     public CategoryService(CategoryRepository repository) {
         this.repository = repository;

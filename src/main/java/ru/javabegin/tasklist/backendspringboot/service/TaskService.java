@@ -43,8 +43,8 @@ public class TaskService {
     }
 
 
-    public Page findByParams(String text, Integer completed, Long priorityId, Long categoryId, PageRequest paging){
-        return repository.findByParams(text, completed, priorityId, categoryId, paging);
+    public Page findByParams(String text, Integer completed, Long priority, Long category, PageRequest paging){
+        return repository.findByParams(text, completed, priority, category, paging);
     }
 
     public Task findById(Long id){

@@ -20,6 +20,7 @@ import java.util.NoSuchElementException;
 // Названия методов могут быть любыми, главное не дублировать их имена и URL mapping
 @RestController
 @RequestMapping ("/category") // базовый адрес
+@CrossOrigin(origins = "http://localhost:4200")
 public class CategoryController {
 
     // доступ к данным из БД
@@ -133,7 +134,7 @@ public class CategoryController {
 
 
         // если вместо текста будет пусто или null - вернутся все категории
-        return ResponseEntity.ok(categoryService.findByTitle(categorySearchValues.getText()));
+        return ResponseEntity.ok(categoryService.findByTitle(categorySearchValues.getTitle()));
     }
 
 

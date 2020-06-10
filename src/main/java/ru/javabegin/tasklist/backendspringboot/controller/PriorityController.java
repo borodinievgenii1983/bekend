@@ -20,13 +20,14 @@ import java.util.NoSuchElementException;
 // Названия методов могут быть любыми, главное не дублировать их имена и URL mapping
 @RestController
 @RequestMapping ("/priority") // базовый адрес
+@CrossOrigin(origins = "http://localhost:4200")
 public class PriorityController {
 
     // доступ к данным из БД
     private PriorityService priorityService;
 
     // автоматическое внедрение экземпляра класса через конструктор
-    // не используем @Autowired ля переменной класса, т.к. "Field injection is not recommended "
+    // не используем @Autowired для переменной класса, т.к. "Field injection is not recommended "
     public PriorityController(PriorityService priorityService) {
         this.priorityService = priorityService;
     }
@@ -150,7 +151,7 @@ public class PriorityController {
 
 
         // если вместо текста будет пусто или null - вернутся все категории
-        return ResponseEntity.ok(priorityService.findByTitle(prioritySearchValues.getText()));
+        return ResponseEntity.ok(priorityService.findByTitle(prioritySearchValues.getTitle()));
     }
 
 

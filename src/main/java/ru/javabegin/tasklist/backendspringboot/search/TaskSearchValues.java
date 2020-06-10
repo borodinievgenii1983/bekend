@@ -25,5 +25,5 @@ public class TaskSearchValues {
     // сортировка
     private String sortColumn;
     private String sortDirection;
-
+   // такие же названия должны быть у объекта на фронтенде;
 }

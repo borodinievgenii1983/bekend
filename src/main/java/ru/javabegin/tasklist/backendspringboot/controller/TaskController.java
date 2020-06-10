@@ -24,6 +24,7 @@ import java.util.NoSuchElementException;
 // Названия методов могут быть любыми, главное не дублировать их имена и URL mapping
 @RestController
 @RequestMapping("/task") // базовый адрес
+@CrossOrigin(origins = "http://localhost:4200")
 public class TaskController {
 
     private final TaskService taskService; // сервис для доступа к данным (напрямую к репозиториям не обращаемся)
@@ -142,13 +143,13 @@ public class TaskController {
 
 
         // исключить NullPointerException
-        String text = taskSearchValues.getTitle() != null ? taskSearchValues.getTitle() : null;
+        String title = taskSearchValues.getTitle() != null ? taskSearchValues.getTitle() : null;
 
         // конвертируем Boolean в Integer
         Integer completed = taskSearchValues.getCompleted() != null ? taskSearchValues.getCompleted() : null;
 
-        Long priorityId = taskSearchValues.getPriority() != null ? taskSearchValues.getPriority() : null;
-        Long categoryId = taskSearchValues.getCategory() != null ? taskSearchValues.getCategory() : null;
+        Long priority = taskSearchValues.getPriority() != null ? taskSearchValues.getPriority() : null;
+        Long category = taskSearchValues.getCategory()!= null ? taskSearchValues.getCategory() : null;
 
         String sortColumn = taskSearchValues.getSortColumn() != null ? taskSearchValues.getSortColumn() : null;
         String sortDirection = taskSearchValues.getSortDirection() != null ? taskSearchValues.getSortDirection() : null;
@@ -169,7 +170,7 @@ public class TaskController {
         PageRequest pageRequest = PageRequest.of(pageNumber, pageSize, sort);
 
         // результат запроса с постраничным выводом
-        Page result = taskService.findByParams(text, completed, priorityId, categoryId, pageRequest);
+        Page result = taskService.findByParams(title, completed, priority, category, pageRequest);
 
         // результат запроса
         return ResponseEntity.ok(result);
